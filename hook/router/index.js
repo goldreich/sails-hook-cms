@@ -13,9 +13,9 @@ module.exports = function() {
     const urlArray = req.url.split('/').filter(url => url && url !== this.config.prefix);
 
     if (urlArray.length === 0 || urlArray[0] !== 'api') {
-      // frontend
+      res.json('FRONTEND');
     } else {
-      // backend
+      res.json('BACKEND');
     }
   };
 
