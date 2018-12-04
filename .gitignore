@@ -1,9 +1,18 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
 /tmp
 /out-tsc
+
+# for sails-hook-cms master
+/src
+/e2e
+.angulardoc.json
+angular.json
+.editorconfig
+README.md
+tsconfig.json
+tslint.json
 
 # dependencies
 /node_modules
