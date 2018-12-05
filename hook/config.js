@@ -1,4 +1,4 @@
 module.exports = {
-  prefix: 'admin',
+  prefix: 'cms',
   policy: null
 };

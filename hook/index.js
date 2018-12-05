@@ -19,8 +19,8 @@ module.exports = function sailsCms(sails) {
   return {
     routes: {
       before: {
-        [`GET /${config.prefix ? config.prefix + '/' : ''}*`]: this._callRouter(),
-        [`GET /${config.prefix}`]: this._callRouter(),
+        [`/${config.prefix ? config.prefix + '/' : ''}*`]: this._callRouter(),
+        [`/${config.prefix}`]: this._callRouter(),
       }
     }
   };
