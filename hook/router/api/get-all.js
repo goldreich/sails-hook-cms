@@ -3,6 +3,8 @@ module.exports = async function (req, res, next) {
     const promises = this.models.map(model => global[model.globalId].find());
     const data = (await Promise.all(promises)).map((records, i) => ({
       identity: this.models[i].identity,
+      globalId: this.models[i].globalId,
+      attributes: this.models[i].attributes,
       records
     }));
 

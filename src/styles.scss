@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+$nebular-icons-font-path: '/sails-hook-cms/assets/fonts';
+
+@import '~nebular-icons/scss/nebular-icons';
+
+
+nb-toastr-container {
+  font-family: Segoe UI;
+}

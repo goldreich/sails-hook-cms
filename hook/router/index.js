@@ -27,14 +27,20 @@ module.exports = function() {
   };
 
   this._action = (req, res, next) => {
-    const urlArray = req.url.split('/').filter(url => url && url !== this.config.prefix);
+    const urlArray = req.url.split('/')
+      .filter(part => part && part !== this.config.prefix);
 
     if (urlArray[0] === 'api') {
-      console.log(req.url);
       return apiRouter.call(this, req, res, next, urlArray.slice(1));
     } else if (urlArray[0]) {
-      return res.sendFile(path.join(__dirname, '../../dist/sails-hook-cms/', urlArray[0]), {}, (err) => {
+      let filename = urlArray.join('/');
+      if (urlArray[0] === 'sails-hook-cms' && urlArray[urlArray.length - 1].indexOf('?') !== -1) {
+        urlArray[urlArray.length - 1] = urlArray[urlArray.length - 1].substr(0, urlArray[urlArray.length - 1].indexOf('?'));
+        filename = urlArray.slice(1).join('/');
+      }
+      return res.sendFile(path.join(__dirname, '../../dist/sails-hook-cms/', filename), {}, (err) => {
         if (err) {
+          console.error(err);
           return this._indexPage(req, res);
         }
       });

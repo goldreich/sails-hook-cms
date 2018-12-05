@@ -1,0 +1,23 @@
+<nb-layout [center]="false" windowMode>
+  <nb-layout-header fixed>
+    <nb-layout-column style="font-size: 22px;">
+      <b>sails</b>-hook-<b>cms</b><i class="nb-menu"></i>
+    </nb-layout-column>
+    <nb-layout-column>
+      <a nbButton target="_blank" href="https://github.com/goldreich/sails-hook-cms" shape="rectangle" hero status="primary">GitHub</a>
+    </nb-layout-column>
+  </nb-layout-header>
+
+  <nb-sidebar class="menu-sidebar"
+              tag="menu-sidebar">
+    <nb-menu [items]="mainMenu"></nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column class="main-content">
+    <ng-content></ng-content>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    Footer
+  </nb-layout-footer>
+</nb-layout>
