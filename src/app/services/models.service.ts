@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject, Observable } from 'rxjs';
-
-import { NbToastrService } from '@nebular/theme';
+import { map } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
+import { ToastsService } from './toasts.service';
 import { Model } from '../types/Model';
 
 @Injectable({
@@ -14,22 +14,31 @@ export class ModelsService {
 
   constructor(
     private apiService: ApiService,
-    private nbToastrService: NbToastrService
+    private toastsService: ToastsService
   ) {}
 
   getModels(): Observable<Model[]> {
     return this.models.asObservable();
   }
 
+  getModel(identity): Observable<Model> {
+    return this.models.pipe(map(models => this.getOneModel(models, identity)));
+  }
+
   refresh(): void {
     this.apiService.getAll()
-      .subscribe((res: any) => {
-        if (res.result) {
-          console.log(res.data);
-          this.models.next(res.data);
-        } else {
-          this.nbToastrService.show('Some text', 'some message in this');
-        }
-      });
+      .subscribe(res => this.getAllModelsHandler(res), err => this.toastsService.httpError());
+  }
+
+  private getOneModel(models, identity): Model {
+    return models
+      .filter(model => model.identity === identity)
+      .reduce((value, model) => value = model, null);
+  }
+
+  private getAllModelsHandler(res: any): void {
+    if (res.result) {
+      this.models.next(res.data);
+    }
   }
 }

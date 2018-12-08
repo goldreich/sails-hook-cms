@@ -22,7 +22,7 @@ import { ScreensModule } from './screens/screens.module';
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
     NbMenuModule.forRoot(),
-    NbToastrModule.forRoot(),
+    NbToastrModule.forRoot({ duration: 6000 }),
     ScreensModule,
     HttpClientModule
   ],

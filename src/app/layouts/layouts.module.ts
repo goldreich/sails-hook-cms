@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import {
   NbLayoutModule,
@@ -11,6 +13,8 @@ import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
+    CommonModule,
+    RouterModule,
     NbLayoutModule,
     NbSidebarModule,
     NbButtonModule,

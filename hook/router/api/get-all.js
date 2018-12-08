@@ -13,12 +13,6 @@ module.exports = async function (req, res, next) {
       data
     });
   } else {
-    res.json({
-      result: false,
-      error: {
-        code: 3,
-        msg: '/api/all allowed only GET method'
-      }
-    });
+    res.json({ result: false, error: { code: 3, msg: '/api/all allowed only GET method' } });
   }
 };

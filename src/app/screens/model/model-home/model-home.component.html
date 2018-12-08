@@ -1,0 +1,23 @@
+<app-layout>
+  <ngx-datatable
+    [columns]="columns"
+    [rows]="rows">
+  </ngx-datatable>
+  <button routerLink="./create"
+     nbButton
+     hero
+     size="xsmall"
+     shape="rectangle"
+     status="success">
+    Create
+  </button>
+  <button routerLink="./settings"
+     nbButton
+     hero
+     size="xsmall"
+     shape="rectangle"
+     outline
+     status="primary">
+    Settings
+  </button>
+</app-layout>

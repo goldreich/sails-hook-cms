@@ -16,7 +16,9 @@ module.exports = function() {
   this._indexPage = (req, res) => {
     if (req.method === 'GET') {
       fs.readFile(path.join(__dirname, '../../dist/sails-hook-cms/index.html'), 'utf8', (err, data) => {
-        res.send(data.replace('<base href="/">', `<base href="/${this.config.prefix}/">`));
+        const html = data
+          .replace('<base href="/">', `<base href="/${this.config.prefix}/">`);
+        res.send(html);
       });
     } else {
       res.status(404).json({

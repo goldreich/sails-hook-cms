@@ -2,4 +2,23 @@
   nb-layout-header nav {
     justify-content: space-between !important;
   }
+
+  .menu-item {
+    word-break: break-all;
+    a:not(.active):hover {
+      font-weight: normal !important;
+    }
+  }
+}
+
+.logo {
+  text-decoration: none;
+}
+
+a {
+  cursor: pointer !important;
+}
+
+.no-collections {
+  margin-top: 20px;
 }

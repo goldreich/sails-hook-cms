@@ -1,0 +1,12 @@
+<app-layout>
+  <h3>Create new {{ model.globalId }}</h3>
+  <ng-container *ngFor="let input of inputs">
+    <div class="input-group">
+      <label [for]="input.prop">
+        {{ input.name || input.prop }}
+      </label>
+      <input *ngIf="input.type === 'number'" [id]="input.prop" type="number" nbInput />
+      <input *ngIf="input.type === 'string'" [id]="input.prop" type="text" nbInput />
+    </div>
+  </ng-container>
+</app-layout>

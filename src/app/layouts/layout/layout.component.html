@@ -1,16 +1,27 @@
 <nb-layout [center]="false" windowMode>
   <nb-layout-header fixed>
-    <nb-layout-column style="font-size: 22px;">
-      <b>sails</b>-hook-<b>cms</b><i class="nb-menu"></i>
-    </nb-layout-column>
-    <nb-layout-column>
-      <a nbButton target="_blank" href="https://github.com/goldreich/sails-hook-cms" shape="rectangle" hero status="primary">GitHub</a>
-    </nb-layout-column>
+    <a class="logo" routerLink="/" style="font-size: 22px;">
+      <b>sails</b>-hook-<b>cms</b>
+    </a>
+    <div>
+      <a
+         routerLink="/settings"
+         nbButton
+         hero
+         size="xsmall"
+         shape="rectangle"
+         status="success">
+        Seetings
+      </a>
+    </div>
   </nb-layout-header>
 
   <nb-sidebar class="menu-sidebar"
               tag="menu-sidebar">
     <nb-menu [items]="mainMenu"></nb-menu>
+    <div class="no-collections" *ngIf="mainMenu.length === 1">
+      No collections
+    </div>
   </nb-sidebar>
 
   <nb-layout-column class="main-content">
@@ -18,6 +29,6 @@
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-    Footer
+    sails-hook-cms
   </nb-layout-footer>
 </nb-layout>

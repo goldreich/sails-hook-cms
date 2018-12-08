@@ -2,6 +2,9 @@ $nebular-icons-font-path: '/sails-hook-cms/assets/fonts';
 
 @import '~nebular-icons/scss/nebular-icons';
 
+a, button, input, textarea {
+  outline: none;
+}
 
 nb-toastr-container {
   font-family: Segoe UI;

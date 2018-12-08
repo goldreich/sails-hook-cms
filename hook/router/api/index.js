@@ -29,6 +29,9 @@ module.exports = function (req, res, next, urlArray) {
 
   return res.json({
     result: true,
-    msg: 'sails-hook-cms api v.0.0.0'
+    msg: 'sails-hook-cms api v.0.0.0',
+    config: {
+      defaultSortPattern: this.config.defaultSortPattern
+    }
   });
 };

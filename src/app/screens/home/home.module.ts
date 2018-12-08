@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { LayoutsModule } from '../../layouts/layouts.module';
 
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [

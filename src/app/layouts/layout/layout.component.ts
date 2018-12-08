@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { NbMenuItem } from '@nebular/theme';
 
@@ -10,29 +10,31 @@ import { ModelsService } from '../../services/models.service';
   templateUrl: 'layout.component.html',
   styleUrls: ['layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
-  mainMenu: NbMenuItem[] = [];
+export class LayoutComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
+  private readonly mainMenuTitle: NbMenuItem = { title: 'COLLECTIONS', group: true };
 
-  private mainMenuTitle: NbMenuItem = {
-    title: 'ALL MODELS',
-    group: true
-  };
+  mainMenu: NbMenuItem[] = [this.mainMenuTitle];
 
-  constructor(
-    private modelsService: ModelsService,
-    private location: Location
-  ) {}
+  constructor(private modelsService: ModelsService) {}
+
+  private updateMainMenuItems(models): void {
+    const menuItems = models.map(model => ({
+      title: model.globalId,
+      link: `/${model.identity}`,
+      icon: 'nb-chevron-right-outline'
+    }));
+
+    this.mainMenu = [this.mainMenuTitle, ...menuItems];
+  }
 
   ngOnInit(): void {
-    this.modelsService.getModels()
-      .subscribe((models) => {
-        this.mainMenu = [
-          this.mainMenuTitle,
-          ...models.map(model => ({
-            title: model.globalId,
-            link: `/${model.identity}`
-          }))
-        ];
-      });
+    this.subscriptions.push(
+      this.modelsService.getModels().subscribe(models => this.updateMainMenuItems(models))
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
